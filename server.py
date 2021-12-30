@@ -1,12 +1,12 @@
 from flask import Flask, request, jsonify
 import util
 
-def create_app():
 
- app = Flask(__name__)
 
- @app.route('/get_symptom_names', methods=['GET'])
- def get_symptom_names():
+app = Flask(__name__)
+
+@app.route('/get_symptom_names', methods=['GET'])
+def get_symptom_names():
      response = jsonify({
          'symptom': util.get_data_columns()
      })
@@ -14,8 +14,8 @@ def create_app():
 
      return response
 
- @app.route('/get_diseases_names', methods=['GET'])
- def get_diseases_names():
+@app.route('/get_diseases_names', methods=['GET'])
+def get_diseases_names():
      response = jsonify({
          'diseases': util.get_diseases_names()
      })
@@ -23,8 +23,8 @@ def create_app():
 
      return response
 
- @app.route('/predict_disease', methods = ['GET','POST'])
- def predict_disease():
+@app.route('/predict_disease', methods = ['GET','POST'])
+def predict_disease():
 
 
      S1 = request.form['S1']
@@ -41,8 +41,8 @@ def create_app():
 
      return response
 
- @app.route('/description', methods = ['GET'])
- def description():
+@app.route('/description', methods = ['GET'])
+def description():
      response = jsonify({
          'Description of the disease': util.description()
      })
@@ -50,15 +50,15 @@ def create_app():
 
      return response
 
- @app.route('/precaution', methods = ['GET'])
- def precaution():
+@app.route('/precaution', methods = ['GET'])
+def precaution():
      response = jsonify({
          'Precaution of the disease': util.precaution()
      })
      response.headers.add('Access-Control-Allow-Origin', '*')
 
      return response
- return app
-#if __name__ == "__main__":
-#   util.load_saved_artifacts()
-#   app.run()
+
+if __name__ == "__main__":
+   util.load_saved_artifacts()
+   app.run()
