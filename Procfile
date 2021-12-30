@@ -1,1 +1,1 @@
-web: gunicorn "server:predict_disease()"
+web: gunicorn server:app
